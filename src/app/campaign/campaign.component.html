@@ -1,0 +1,50 @@
+<!-- Game On -->
+<section *ngIf="!gameOver">
+  <div class="mb-60">
+    <h1 class="mb-0">
+      Rats alive:
+      <strong class="rats-alive-counter"> {{ currentRatCount }} </strong>
+    </h1>
+    <button (click)="handlePickupToolClick()" class="btn-secondary mr-10">
+      {{ hasTool ? "Drop Poison" : "Pickup Poison" }}
+    </button>
+    <button (click)="handleResetClick()" class="btn-primary">
+      Reset current level
+    </button>
+  </div>
+
+  <app-rat
+    [resetSubject]="resetSubject"
+    [hasTool]="hasTool"
+    (hoveredWithoutTool)="handleHoverWithoutTool()"
+    (dying)="handleRatDeath()"
+    (respawn)="handleRatRespawn()"
+    *ngFor="let rat of rats"
+  ></app-rat>
+</section>
+
+<!-- Game Over -->
+<section *ngIf="gameOver">
+  <h1 style="margin-bottom: 0">
+    {{
+      rats.length === 110
+        ? "Great Job 🥉"
+        : rats.length === 120
+        ? "Keep going 🥈"
+        : rats.length === 130
+        ? "Victory 🥇"
+        : "Nice Job!"
+    }}
+  </h1>
+  <h2 style="margin-bottom: 15px; margin-top: 10px">
+    You just killed
+    <span style="color: red; font-weight: 700">{{ rats.length }}</span> rats{{
+      rats.length === 130 ? " and won the game." : "."
+    }}
+  </h2>
+  <button (click)="handleRepeatClick()" class="btn-primary mr-10">
+    Increase by 10 and repeat
+  </button>
+</section>
+
+<button class="btn-settings" (click)="handleSettingsClick()">⚙️</button>

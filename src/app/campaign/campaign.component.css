@@ -1,0 +1,29 @@
+h1 {
+  font-size: 35px;
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+h1 > .rats-alive-counter {
+  font-size: 70px;
+  color: rgb(255, 32, 32);
+}
+
+h1 > .rats-dead-counter {
+  font-size: 60px;
+  color: green;
+}
+
+.btn-settings {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+
+  border: 0;
+  background-color: transparent;
+  font-size: 20px;
+  cursor: pointer;
+}

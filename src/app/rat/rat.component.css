@@ -1,0 +1,14 @@
+.symbol {
+  font-size: 37px;
+
+  /* Avoid accidential selects of the rat. */
+  user-select: none;
+}
+
+.transparent {
+  opacity: 0;
+}
+
+.no-cursor {
+  cursor: default;
+}
