@@ -24,8 +24,8 @@
 
 <!-- Game Over -->
 <section *ngIf="gameOver">
-  <h1 *ngIf="MAX_RATS_COUNT !== 190" class="mb-0">Nice Job!</h1>
-  <h1 *ngIf="MAX_RATS_COUNT === 190" class="mb-0">You are Amazing!</h1>
+  <h1 *ngIf="MAX_RATS_COUNT !== 200" class="mb-0">Nice Job!</h1>
+  <h1 *ngIf="MAX_RATS_COUNT === 200" class="mb-0">You are Amazing!</h1>
   <h2 style="margin-bottom: 15px; margin-top: 10px">
     You just killed
     <span style="color: red; font-weight: 700">{{ MAX_RATS_COUNT }}</span> rats.

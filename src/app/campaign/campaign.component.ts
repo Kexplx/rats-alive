@@ -55,7 +55,7 @@ export class CampaignComponent implements OnInit {
       this.handlePickupToolClick();
       this.hs.setHighscore(this.MAX_RATS_COUNT + 10);
 
-      if (this.MAX_RATS_COUNT === 190) {
+      if (this.MAX_RATS_COUNT === 200) {
         // 200 RATS KILLED.
         this.toggleFireworks();
       }
@@ -68,14 +68,14 @@ export class CampaignComponent implements OnInit {
   }
 
   handleRepeatClick() {
+    if (this.MAX_RATS_COUNT === 200) {
+      this.toggleFireworks();
+    }
+
     // Increase current maximum by 10.
     const maxRatCount = this.MAX_RATS_COUNT + 10;
 
     this.setMaxRatCount(maxRatCount);
-
-    if (this.MAX_RATS_COUNT === 190) {
-      this.toggleFireworks();
-    }
   }
 
   handleResetClick() {
