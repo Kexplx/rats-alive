@@ -21,6 +21,10 @@ export class CampaignComponent implements OnInit {
 
   rats: null[] = [];
 
+  get MAX_RATS_COUNT() {
+    return this.rats.length;
+  }
+
   constructor(private route: ActivatedRoute, private hs: HighscoreService) {}
 
   ngOnInit() {
@@ -49,33 +53,33 @@ export class CampaignComponent implements OnInit {
     if (this.currentRatCount === 0) {
       this.gameOver = true;
       this.handlePickupToolClick();
-      this.hs.setHighscore(this.rats.length + 10);
+      this.hs.setHighscore(this.MAX_RATS_COUNT + 10);
+
+      if (this.MAX_RATS_COUNT === 190) {
+        // 200 RATS KILLED.
+        this.toggleFireworks();
+      }
     }
+  }
+
+  private toggleFireworks() {
+    const fireworks = document.querySelector('.fireworks-container');
+    fireworks?.classList.toggle('pyro');
   }
 
   handleRepeatClick() {
     // Increase current maximum by 10.
-    const maxRatCount = this.rats.length + 10;
+    const maxRatCount = this.MAX_RATS_COUNT + 10;
 
     this.setMaxRatCount(maxRatCount);
-  }
 
-  handleSettingsClick() {
-    try {
-      const promptInput = prompt('Rat Count:', '50');
-
-      if (!promptInput) {
-        return;
-      }
-
-      const maxRatCount = Number(promptInput);
-
-      this.setMaxRatCount(maxRatCount);
-    } catch (error) {}
+    if (this.MAX_RATS_COUNT === 190) {
+      this.toggleFireworks();
+    }
   }
 
   handleResetClick() {
-    this.setMaxRatCount(this.rats.length);
+    this.setMaxRatCount(this.MAX_RATS_COUNT);
   }
 
   handlePickupToolClick() {

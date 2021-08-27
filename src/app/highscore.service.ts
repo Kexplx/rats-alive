@@ -4,13 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class HighscoreService {
+  private HIGHSCORE_KEY = 'rats-alive-hs';
+
   getHighscore(): number {
-    const entry = localStorage.getItem('hs') || 0;
+    const entry = localStorage.getItem(this.HIGHSCORE_KEY) || 0;
 
     return Number(entry);
   }
 
   setHighscore(highscore: number): void {
-    localStorage.setItem('hs', highscore.toString());
+    localStorage.setItem(this.HIGHSCORE_KEY, highscore.toString());
   }
 }
