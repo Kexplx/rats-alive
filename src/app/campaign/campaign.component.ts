@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, Subscription, timer } from 'rxjs';
+import { HighscoreService } from '../highscore.service';
 
 @Component({
   selector: 'app-campaign',
@@ -12,13 +13,15 @@ export class CampaignComponent implements OnInit {
   gameOver = false;
   bounceButtonTimeout: Subscription | undefined;
 
+  highscore = this.hs.getHighscore();
+
   hasTool = false;
 
   resetSubject = new Subject<void>();
 
   rats: null[] = [];
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private hs: HighscoreService) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -36,12 +39,17 @@ export class CampaignComponent implements OnInit {
     this.currentRatCount++;
   }
 
+  handleContinueFromHighscore() {
+    this.setMaxRatCount(this.highscore);
+  }
+
   handleRatDeath() {
     this.currentRatCount--;
 
     if (this.currentRatCount === 0) {
       this.gameOver = true;
       this.handlePickupToolClick();
+      this.hs.setHighscore(this.rats.length + 10);
     }
   }
 

@@ -8,7 +8,8 @@
     <button (click)="handlePickupToolClick()" class="btn-secondary mr-10">
       {{ hasTool ? 'Drop Poison' : 'Pickup Poison' }}
     </button>
-    <button (click)="handleResetClick()" class="btn-primary">Reset current level</button>
+    <button (click)="handleResetClick()" class="btn-primary mr-10">Reset current level</button>
+    <button *ngIf="highscore > rats.length" (click)="handleContinueFromHighscore()" class="btn-thirdary">Continue from your highscore ({{ highscore }} rats)</button>
   </div>
 
   <app-rat
