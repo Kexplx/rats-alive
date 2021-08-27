@@ -21,7 +21,7 @@ export class CampaignComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
+    this.route.queryParams.subscribe(params => {
       // Default maxRatsCount if no query param exists in url.
       let maxRatsCount = 50;
       if ('rats' in params) {
@@ -95,8 +95,6 @@ export class CampaignComponent implements OnInit {
     const toolBtn = document.querySelector('.btn-secondary');
     toolBtn?.classList.add('bounce');
 
-    this.bounceButtonTimeout = timer(400).subscribe(() =>
-      toolBtn?.classList.remove('bounce')
-    );
+    this.bounceButtonTimeout = timer(400).subscribe(() => toolBtn?.classList.remove('bounce'));
   }
 }

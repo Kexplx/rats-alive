@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Subject, Subscription, timer } from 'rxjs';
 
 @Component({
@@ -48,13 +41,11 @@ export class RatComponent implements OnDestroy, OnInit {
     this.dead = true;
     this.dying.emit();
 
-    this.respawnSubscription = timer(Math.random() * 30000 + 5000).subscribe(
-      () => {
-        this.ratSymbol = this.getRatSymbol();
-        this.dead = false;
-        this.respawn.emit();
-      }
-    );
+    this.respawnSubscription = timer(Math.random() * 30000 + 5000).subscribe(() => {
+      this.ratSymbol = this.getRatSymbol();
+      this.dead = false;
+      this.respawn.emit();
+    });
   }
 
   ngOnDestroy() {
