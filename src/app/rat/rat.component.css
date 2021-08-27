@@ -1,5 +1,5 @@
 .symbol {
-  font-size: 37px;
+  font-size: 33px;
 
   /* Avoid accidential selects of the rat. */
   user-select: none;
