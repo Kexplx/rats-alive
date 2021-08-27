@@ -23,7 +23,7 @@ export class CampaignComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       // Default maxRatsCount if no query param exists in url.
-      let maxRatsCount = 50;
+      let maxRatsCount = 100;
       if ('rats' in params) {
         maxRatsCount = Number(params.rats);
       }
